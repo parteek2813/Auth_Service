@@ -18,6 +18,32 @@ class UserService {
     }
   }
 
+  async signIn(email, plainPassword) {
+    try {
+      //step-1 --> Fetch the user using the email
+      const user = await this.userRepository.GetByEmail(email);
+
+      //step-2 --> Comapre incoming plain password with stored encyrpted
+      const passwordMatch = this.checkPasswords(plainPassword, user.password);
+      if (!passwordMatch) {
+        console.log("Password does not match");
+        throw { error: "Incorrect Password" };
+      }
+
+      //Inside the createtoken(), we should pass plain js object instead of sequelize object
+
+      // Step-3 --> If passwords match, then create a token and send it to the user
+      const newJWT = this.createToken({
+        email: user.email,
+        id: user.id,
+      });
+      return newJWT;
+    } catch (error) {
+      console.log("Something went wrong in the SignIn process");
+      throw error;
+    }
+  }
+
   createToken(user) {
     try {
       const result = jwt.sign(user, JWT_KEY, { expiresIn: "1d" });
