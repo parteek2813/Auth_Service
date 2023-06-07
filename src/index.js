@@ -17,13 +17,16 @@ const prepareStartServer = () => {
     console.log(`Server started on PORT: ${PORT}`);
 
     const service = new UserService();
-    // const newToken = service.createToken({ email: "dummy@gmail.com", id: 1 });
+    // const newToken = service.createToken({
+    //   email: "newdummy@gmail.com",
+    //   id: 1,
+    // });
     // console.log("New token is ", newToken);
 
-    const token =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImR1bW15QGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE2ODYxMTQ4MDcsImV4cCI6MTY4NjExODQwN30.75bnIoBI-bur53-Jq6H8toX58Kk5FL9WAFrrMO0FpMM";
-    const response = service.verifyToken(token);
-    console.log(response);
+    // const token =
+    //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5ld2R1bW15QGdtYWlsLmNvbSIsImlkIjoxLCJpYXQiOjE2ODYxMjI5NTgsImV4cCI6MTY4NjcyNzc1OH0.fuuV-uK_ta4g-E5BYgroiGukICyfTR3eJL5GFIg0LF8";
+    // const response = service.verifyToken(token);
+    // console.log(response);
   });
 };
 
