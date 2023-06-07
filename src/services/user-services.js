@@ -89,7 +89,16 @@ class UserService {
     try {
       return bcrypt.compareSync(userInputPlainPassword, encryptedPassword);
     } catch (error) {
-      console.log("Something went wrong in the pass comaparison", error);
+      console.log("Something went wrong in the pass comaparison");
+      throw error;
+    }
+  }
+
+  isAdmin(userId) {
+    try {
+      return this.userRepository.isAdmin(userId);
+    } catch (error) {
+      console.log("Something went wrong in the service layer");
       throw error;
     }
   }
