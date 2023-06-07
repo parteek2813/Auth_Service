@@ -3,8 +3,9 @@ const apiRoutes = require("./routes/index");
 const bodyParser = require("body-parser");
 
 const UserService = require("./services/user-services");
+const { User, Role } = require("./models/index");
 
-// const { PORT } = require("./config/server-config");
+// const db = require("./models/index");
 const app = express();
 
 const PORT = 3001;
@@ -16,7 +17,13 @@ const prepareStartServer = () => {
   app.listen(PORT, async () => {
     console.log(`Server started on PORT: ${PORT}`);
 
-    const service = new UserService();
+    const service = new UserService({ alter: true });
+
+    const u1 = await User.findByPk(1);
+    const r1 = await Role.findByPk(2);
+    u1.addRole(r1);
+
+    // db.sequelize.sync();
     // const newToken = service.createToken({
     //   email: "newdummy@gmail.com",
     //   id: 1,
