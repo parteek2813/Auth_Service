@@ -18,6 +18,7 @@ const create = async (req, res) => {
     });
   } catch (error) {
     // console.log(error);
+
     return res.status(error.statusCodes).json({
       message: error.message,
       data: {},
@@ -41,11 +42,11 @@ const signIn = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({
-      message: "something went wrong",
+    return res.status(error.statusCodes).json({
+      message: error.message,
       data: {},
       success: false,
-      err: error,
+      err: error.explanation,
     });
   }
 };
